@@ -1,5 +1,4 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { ThemeToggle } from "../theme/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { Menu, Shield, Sparkles, User } from "lucide-react";
@@ -81,8 +80,8 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5 lg:px-6">
-      <div className="mx-auto max-w-7xl rounded-[26px] border border-slate-200/70 bg-white/78 shadow-[0_18px_44px_rgba(15,23,42,0.08)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/72">
+    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-[linear-gradient(180deg,_rgba(248,250,252,0.96),_rgba(248,250,252,0.84))] px-3 py-3 backdrop-blur-xl supports-[backdrop-filter]:bg-[linear-gradient(180deg,_rgba(248,250,252,0.92),_rgba(248,250,252,0.72))] sm:px-5 lg:px-6">
+      <div className="mx-auto max-w-7xl rounded-[26px] border border-white/80 bg-white/88 shadow-[0_16px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl">
         <div className="flex min-h-[74px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-7">
           <Link to="/" className="flex min-w-0 items-center gap-3 text-slate-950">
             <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,_#10b981,_#14b8a6_50%,_#2563eb)] text-sm font-bold text-white shadow-[0_14px_32px_rgba(37,99,235,0.22)]">
@@ -96,7 +95,7 @@ export function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50/90 px-2 py-2 lg:flex">
+          <nav className="hidden items-center gap-2 rounded-full border border-slate-200/70 bg-slate-50/92 px-2 py-2 lg:flex">
           {productLinks.map((item) =>
             item.kind === "assistant" ? (
               <NavLink
@@ -140,6 +139,16 @@ export function Navbar() {
                   }}
                 >
                   Login
+                </Button>
+                <Button
+                  variant="outline"
+                  className="hidden rounded-full border-slate-200 bg-white px-4 text-slate-800 shadow-sm hover:bg-slate-50 sm:inline-flex"
+                  onClick={() => {
+                    setLoginOpen(false);
+                    setSignupOpen(true);
+                  }}
+                >
+                  Sign up
                 </Button>
                 <Button
                   className="rounded-full border-0 bg-[linear-gradient(135deg,_#10b981,_#14b8a6_45%,_#2563eb)] px-5 text-white shadow-[0_14px_32px_rgba(37,99,235,0.18)] hover:opacity-95"
@@ -197,11 +206,6 @@ export function Navbar() {
                 </DropdownMenu>
               </>
             )}
-
-            {/* <div className="rounded-full border border-slate-200/80 bg-white p-1 shadow-sm">
-              <ThemeToggle />
-            </div> */}
-
             <Button
               variant="outline"
               size="icon"
@@ -285,6 +289,17 @@ export function Navbar() {
                     }}
                   >
                     Login
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full rounded-full"
+                    onClick={() => {
+                      closeMobileMenu();
+                      setLoginOpen(false);
+                      setSignupOpen(true);
+                    }}
+                  >
+                    Sign up
                   </Button>
                   <Button
                     className="w-full rounded-full border-0 bg-[linear-gradient(135deg,_#10b981,_#14b8a6_45%,_#2563eb)] text-white"

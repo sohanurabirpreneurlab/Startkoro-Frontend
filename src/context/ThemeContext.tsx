@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { readFromStorage, writeToStorage } from "../utils/storage";
 
-type Theme = "light" | "dark";
+type Theme = "light";
 
 type ThemeContextValue = {
   theme: Theme;
@@ -14,13 +14,14 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 const STORAGE_KEY = "startkoro.theme";
 
 function applyThemeToDocument(theme: Theme) {
-  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.classList.remove("dark");
+  document.documentElement.classList.add(theme);
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = readFromStorage<Theme>(STORAGE_KEY);
-    return saved === "dark" || saved === "light" ? saved : "dark";
+    return saved === "light" ? saved : "light";
   });
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return {
       theme,
       setTheme: setThemeState,
-      toggleTheme: () => setThemeState((t) => (t === "dark" ? "light" : "dark")),
+      toggleTheme: () => setThemeState("light"),
     };
   }, [theme]);
 
@@ -44,4 +45,3 @@ export function useTheme() {
   if (!ctx) throw new Error("useTheme must be used inside ThemeProvider");
   return ctx;
 }
-
