@@ -1,0 +1,469 @@
+{
+  "common": {
+    "loading": "লোড হচ্ছে...",
+    "saving": "সেভ হচ্ছে...",
+    "refreshing": "রিফ্রেশ হচ্ছে...",
+    "delete": "ডিলিট",
+    "deleting": "ডিলিট হচ্ছে...",
+    "cancel": "বাতিল",
+    "save": "সেভ",
+    "close": "বন্ধ করুন",
+    "lightTheme": "Light theme",
+    "remove": "সরান",
+    "error": "ত্রুটি",
+    "unknownDate": "তারিখ জানা নেই",
+    "created": "তৈরি হয়েছে {{date}}",
+    "updated": "আপডেট হয়েছে {{date}}"
+  },
+  "navbar": {
+    "tagline": "বাংলাদেশের জন্য ব্যবসায়িক গাইডেন্স",
+    "knowledgeBase": "নলেজ বেইস",
+    "aiAssistant": "AI অ্যাসিস্ট্যান্ট",
+    "admin": "অ্যাডমিন",
+    "login": "লগইন",
+    "signup": "সাইন আপ",
+    "askAI": "AI-কে জিজ্ঞাসা করুন",
+    "workspaceBadge": "AI-চালিত ব্যবসায়িক ওয়ার্কস্পেস",
+    "profile": "প্রোফাইল",
+    "profileDemo": "প্রোফাইল (ডেমো)",
+    "logout": "লগ আউট",
+    "openMenu": "মেনু খুলুন",
+    "languageToggle": "English"
+  },
+  "auth": {
+    "requiredTitle": "অনুমতি প্রয়োজন",
+    "requiredDescription": "চালিয়ে যেতে লগইন বা সাইন আপ করুন।",
+    "chatRequiredDescription": "চ্যাট ব্যবহার করতে লগইন বা সাইন আপ করুন।",
+    "chatsRequiredDescription": "আপনার চ্যাট দেখতে লগইন বা সাইন আপ করুন।",
+    "login": {
+      "title": "স্বাগতম",
+      "subtitle": "আপনার আসল backend অ্যাকাউন্ট দিয়ে চালিয়ে যেতে লগইন করুন।",
+      "google": "Google দিয়ে চালিয়ে যান",
+      "divider": "অথবা চালিয়ে যান",
+      "email": "ইমেইল",
+      "emailPlaceholder": "you@example.com",
+      "password": "পাসওয়ার্ড",
+      "passwordPlaceholder": "পাসওয়ার্ড",
+      "submit": "লগইন",
+      "submitting": "লগইন হচ্ছে...",
+      "emailRequired": "ইমেইল প্রয়োজন",
+      "emailInvalid": "সঠিক ইমেইল লিখুন",
+      "passwordRequired": "পাসওয়ার্ড প্রয়োজন",
+      "passwordMin": "পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে"
+    },
+    "signup": {
+      "title": "আপনার অ্যাকাউন্ট তৈরি করুন",
+      "subtitle": "টেস্টিংয়ের জন্য একটি আসল backend অ্যাকাউন্ট তৈরি করতে সাইন আপ করুন।",
+      "submit": "অ্যাকাউন্ট তৈরি করুন",
+      "submitting": "অ্যাকাউন্ট তৈরি হচ্ছে...",
+      "firstName": "নামের প্রথম অংশ",
+      "firstNamePlaceholder": "First",
+      "lastName": "নামের শেষ অংশ",
+      "lastNamePlaceholder": "Last",
+      "mobile": "মোবাইল নম্বর",
+      "mobilePlaceholder": "+8801712345678",
+      "address": "ঠিকানা",
+      "addressPlaceholder": "রাস্তা, শহর, দেশ",
+      "confirmPassword": "পাসওয়ার্ড নিশ্চিত করুন",
+      "firstNameRequired": "নামের প্রথম অংশ প্রয়োজন",
+      "lastNameRequired": "নামের শেষ অংশ প্রয়োজন",
+      "mobileRequired": "মোবাইল নম্বর প্রয়োজন",
+      "mobileInvalid": "সঠিক মোবাইল নম্বর লিখুন",
+      "addressRequired": "ঠিকানা প্রয়োজন",
+      "addressMin": "ঠিকানা কমপক্ষে ৫ অক্ষরের হতে হবে",
+      "confirmPasswordRequired": "পাসওয়ার্ড নিশ্চিত করুন",
+      "passwordMismatch": "পাসওয়ার্ড মিলছে না"
+    },
+    "country": {
+      "label": "Country code",
+      "select": "Select..."
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "বাংলাদেশি ব্যবসা পরিচালকদের জন্য AI ওয়ার্কস্পেস",
+      "title": "AI গাইডেন্সের মাধ্যমে বাংলাদেশে আপনার ব্যবসা শুরু ও বৃদ্ধি করুন",
+      "subtitle": "Trade License, eTIN, VAT, RJSC, ফাইন্যান্স, পেমেন্ট, compliance এবং startup planning নিয়ে founder, freelancer, online seller ও SME-দের জন্য তৈরি একটি localized AI workspace-এ বাস্তবধর্মী গাইডেন্স পান।",
+      "primaryCta": "Start Koro AI-কে জিজ্ঞাসা করুন",
+      "secondaryCta": "আমার Business Journey পরিকল্পনা করুন",
+      "panelTitle": "Start Koro AI",
+      "panelSubtitle": "Localized business planning ও compliance guidance",
+      "panelBadge": "Knowledge-backed",
+      "sampleUser": "আমি ঢাকায় একটি online clothing business শুরু করতে চাই। প্রথমে কী করা উচিত?",
+      "sampleAssistant": "প্রথমে business structure, trade license, eTIN, payment setup এবং basic bookkeeping নিয়ে শুরু করুন। আপনার business type, location এবং budget অনুযায়ী আমি ধাপে ধাপে checklist তৈরি করতে পারি।",
+      "firstStepsTitle": "প্রস্তাবিত প্রথম ধাপ",
+      "firstStepsText": "Trade license, eTIN, payment method, cost plan",
+      "localizedTitle": "Localized output",
+      "localizedText": "বাস্তব action order সহ Bangladesh-focused guidance"
+    },
+    "trustBadges": [
+      "Bangladesh-focused guidance",
+      "English ও Bangla support",
+      "Founder, freelancer ও SME-দের জন্য তৈরি",
+      "Knowledge-base powered answers"
+    ],
+    "stats": [
+      {
+        "title": "Registration clarity",
+        "text": "Trade license, eTIN, RJSC, VAT/BIN এবং অন্যান্য শুরু করার requirement সহজ flow-তে বুঝুন।"
+      },
+      {
+        "title": "Finance ও payments",
+        "text": "Pricing, gateway choice, startup costing এবং basic bookkeeping habit নিয়ে সহায়তা পান।"
+      },
+      {
+        "title": "বিশ্বাসযোগ্য গাইডেন্স",
+        "text": "এলোমেলো link খোঁজার বদলে curated knowledge ও practical context ব্যবহার করুন।"
+      },
+      {
+        "title": "Workspace continuity",
+        "text": "আপনার planning, question এবং next step এক reusable AI-powered business workspace-এ রাখুন।"
+      }
+    ],
+    "problem": {
+      "eyebrow": "কেন জরুরি",
+      "title": "বাংলাদেশের founders-দের জটিলতার আগে পরিষ্কার গাইডেন্স দরকার হয়",
+      "description": "Business শুরু করতে registration, tax, payment এবং compliance নিয়ে আন্দাজে এগোতে হওয়া উচিত নয়। Start Koro AI অনিশ্চয়তা কমিয়ে পরের ধাপগুলো সংগঠিত করতে সাহায্য করে।",
+      "solutionTitle": "Start Koro AI কী সমাধান করে",
+      "solutionText": "এটি ছড়ানো startup ও compliance প্রশ্নকে localized, practical guidance-এ রূপ দেয়, যা বাস্তবে কাজে লাগানো যায়। Information overload-এর বদলে আপনি পরিষ্কার decision, ভালো sequencing এবং idea থেকে operation পর্যন্ত আত্মবিশ্বাসী পথ পান।",
+      "cards": [
+        {
+          "title": "নিয়মকানুন অনেক জায়গায় ছড়ানো",
+          "description": "Registration, tax, banking, payment setup ও compliance information প্রায়ই আলাদা জায়গায় ভিন্ন wording-এ থাকে।"
+        },
+        {
+          "title": "Registration step পরিষ্কার নয়",
+          "description": "Founder-রা কী আগে করবে, কোন document দরকার, কোন authority কোন কাজ দেখে তা বুঝতে অনেক সময় হারায়।"
+        },
+        {
+          "title": "এক জায়গায় startup roadmap নেই",
+          "description": "Early operator-দের এমন practical workspace দরকার যা business question-কে ordered ও realistic action plan-এ রূপ দেয়।"
+        }
+      ]
+    },
+    "journey": {
+      "eyebrow": "কীভাবে কাজ করে",
+      "title": "Business question-কে action-এ রূপ দেওয়ার practical workflow",
+      "description": "Product-টি founders-দের uncertainty থেকে ordered execution-এ যেতে সাহায্য করে, session বদলালেও context হারায় না।",
+      "steps": [
+        {
+          "number": "01",
+          "title": "আপনার business বর্ণনা করুন",
+          "description": "আপনি কী launch করতে চান, কোথায় operate করবেন এবং কোন stage-এ আছেন তা জানান।"
+        },
+        {
+          "number": "02",
+          "title": "Localized AI guidance পান",
+          "description": "Trade license, eTIN, VAT/BIN, RJSC, finance ও payments নিয়ে practical guidance পান।"
+        },
+        {
+          "number": "03",
+          "title": "আপনার checklist অনুসরণ করুন",
+          "description": "Advice-কে Bangladesh অনুযায়ী task, document এবং next decision-এর পরিষ্কার sequence-এ নিন।"
+        },
+        {
+          "number": "04",
+          "title": "সেভ করে পরে চালিয়ে যান",
+          "description": "Chat সংরক্ষণ করুন, পুরোনো answer দেখুন এবং business বড় হওয়ার সাথে planning চালিয়ে যান।"
+        }
+      ]
+    },
+    "features": {
+      "eyebrow": "Core features",
+      "title": "শুধু basic chat box নয়, একটি polished founder workspace",
+      "description": "Start Koro AI assistant guidance, structured knowledge এবং reusable business tools মিলিয়ে Bangladesh-এর entrepreneurs-দের জন্য একটি complete operating layer তৈরি করে।",
+      "items": [
+        {
+          "title": "AI Business Advisor",
+          "description": "English বা Bangla-তে business question করুন এবং local startup ও compliance context অনুযায়ী practical answer পান।"
+        },
+        {
+          "title": "Startup Journey Builder",
+          "description": "জটিল launch plan-কে step, document, registration ও checkpoint-এর personalized sequence-এ ভাঙুন।"
+        },
+        {
+          "title": "Knowledge Base Search",
+          "description": "Curated guidance, business reference, template ও operational note থেকে retrieval-backed response পান।"
+        },
+        {
+          "title": "Excel Knowledge Upload",
+          "description": "Admins structured CSV বা Excel knowledge import করতে পারেন, যাতে assistant শক্তিশালী local dataset থেকে answer দিতে পারে।"
+        },
+        {
+          "title": "Business Templates & Tools",
+          "description": "Planning prompt, payment setup reference, compliance checklist, calculator এবং practical starter asset ব্যবহার করুন।"
+        },
+        {
+          "title": "User Workspace & History",
+          "description": "Conversation সেভ করুন, business thread আবার খুলুন এবং বারবার নতুন করে শুরু না করে planning সংগঠিত রাখুন।"
+        }
+      ]
+    },
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "যারা সত্যিই business তৈরি করেন, তাদের জন্য designed",
+      "description": "আপনি প্রথম idea launch করুন বা একাধিক early-stage operator-কে support করুন, Start Koro AI real founder workflow-তে useful হওয়ার জন্য তৈরি।",
+      "items": [
+        {
+          "title": "First-time founders",
+          "description": "প্রথমে কী করতে হবে, কোন registration গুরুত্বপূর্ণ এবং early-stage compliance confusion কীভাবে এড়াবেন তা বুঝুন।"
+        },
+        {
+          "title": "Freelancers",
+          "description": "eTIN, payment collection, pricing setup এবং client-এর সঙ্গে professional operation নিয়ে সহায়তা পান।"
+        },
+        {
+          "title": "Online sellers",
+          "description": "Trade license basics, payment gateways, bookkeeping habits এবং low-cost growth decision পরিকল্পনা করুন।"
+        },
+        {
+          "title": "SME owners",
+          "description": "Tax question, operational planning এবং business process clarity-র জন্য Start Koro AI-কে practical support layer হিসেবে ব্যবহার করুন।"
+        },
+        {
+          "title": "Student entrepreneurs",
+          "description": "Idea validate করুন, setup need estimate করুন এবং side-project thinking থেকে actionable business roadmap-এ এগোন।"
+        },
+        {
+          "title": "Incubators ও startup teams",
+          "description": "Common question, workflow ও local business basics-এর reusable knowledge system দিয়ে portfolio founders-দের support করুন।"
+        }
+      ]
+    },
+    "popularQuestions": {
+      "eyebrow": "জনপ্রিয় প্রশ্ন",
+      "title": "Startup ও compliance নিয়ে মানুষ প্রথমে যে প্রশ্নগুলো করে",
+      "description": "Founders, freelancers এবং online sellers AI assistant-এ শুরু করার জন্য এসব common question ব্যবহার করতে পারেন।",
+      "items": [
+        "ঢাকায় trade license কীভাবে করব?",
+        "বাংলাদেশে freelancers-দের কি eTIN লাগে?",
+        "কখন RJSC-তে private limited company register করা উচিত?",
+        "VAT/BIN registration-এর জন্য কী document দরকার?",
+        "Online clothing shop শুরু করতে কত capital লাগতে পারে?",
+        "Small online sellers-দের জন্য কোন payment gateway কাজ করে?"
+      ]
+    },
+    "resources": {
+      "eyebrow": "Trusted resources",
+      "title": "Official ecosystem reference হাতের কাছে রাখুন",
+      "description": "Start Koro AI next step বুঝতে সাহায্য করতে পারে, তবে legal, tax ও regulatory বিষয় verify করতে official authority ও qualified advisor ব্যবহার করা উচিত।",
+      "warning": "Legal, tax, regulatory এবং licensing বিষয়ে final action-এর আগে official authority বা qualified professional দিয়ে verify করুন।",
+      "items": [
+        { "name": "RJSC", "note": "Company registration ও corporate filings" },
+        { "name": "NBR", "note": "Tax authority information ও taxpayer services" },
+        { "name": "VAT Online", "note": "VAT registration ও related digital services" },
+        { "name": "BIDA", "note": "Investment ও business facilitation support" },
+        { "name": "Bangladesh Bank", "note": "Financial system reference ও regulatory notice" },
+        { "name": "ICT Division", "note": "Digital ecosystem ও innovation initiative" },
+        { "name": "Startup Bangladesh", "note": "Startup ecosystem program ও funding initiative" },
+        { "name": "SME Foundation", "note": "Small business support, training ও resource" }
+      ]
+    },
+    "toolkits": {
+      "eyebrow": "Business toolkits",
+      "title": "আরও আত্মবিশ্বাসের সাথে operate করার starter asset",
+      "description": "Toolkits abstract advice থেকে practical execution-এ যেতে planning, finance, compliance ও operating support দেয়।",
+      "items": [
+        {
+          "label": "Payments",
+          "title": "Online Sellers-দের Digital Payments",
+          "description": "Gateway option, collection flow, settlement expectation এবং customer trust consideration বুঝুন।"
+        },
+        {
+          "label": "Hiring",
+          "title": "Early Startups-দের Hiring Basics",
+          "description": "প্রথম hire, role clarity এবং realistic startup operating structure নিয়ে lightweight guidance পান।"
+        },
+        {
+          "label": "Planning",
+          "title": "Lean Business Plan Template",
+          "description": "Rough idea-কে clear offer, customer segment, cost view এবং early traction plan-এ রূপ দিন।"
+        },
+        {
+          "label": "Compliance",
+          "title": "Compliance Calendar",
+          "description": "Recurring filing, tax, registration এবং operational reminder এক simple planning framework-এ track করুন।"
+        },
+        {
+          "label": "Finance",
+          "title": "Cost Calculator",
+          "description": "Early commitment নেওয়ার আগে startup cost, recurring expense এবং basic launch runway estimate করুন।"
+        },
+        {
+          "label": "Operations",
+          "title": "Bookkeeping Starter Sheet",
+          "description": "সহজে maintain করা যায় এমন structure-এ sales, cost এবং cash movement record করা শুরু করুন।"
+        }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Founder feedback",
+      "title": "Abstract নয়, বাস্তবে useful অনুভব করার জন্য তৈরি",
+      "description": "Product-টি professional judgment replace করার ভান না করে practical decision দ্রুত নিতে operators-দের সাহায্য করে।",
+      "items": [
+        {
+          "name": "Nusrat Jahan",
+          "role": "Founder, boutique ecommerce brand",
+          "quote": "Vague business idea থেকে licensing, payments এবং first-month operations-এর clear checklist করতে সাহায্য করেছে।"
+        },
+        {
+          "name": "Arif Hossain",
+          "role": "Freelance consultant",
+          "quote": "পাঁচ জায়গায় search না করে এক প্রশ্নে Bangladesh-এর জন্য practical answer পেয়েছি।"
+        },
+        {
+          "name": "Tahmid Rahman",
+          "role": "Startup program manager",
+          "quote": "Early founders-দের theory নয়, direction দরকার। এই structure confusion থেকে action-এ যাওয়ার সময় কমায়।"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Responsible AI",
+      "title": "পরিষ্কার guidance, দায়িত্বশীল সীমাসহ",
+      "description": "Start Koro AI business planning ও operational guidance সহজলভ্য করার জন্য তৈরি। এটি practical assistant হিসেবে ব্যবহার করুন, regulated professional advice-এর বিকল্প হিসেবে নয়।",
+      "items": [
+        {
+          "question": "এটি কি lawyer বা tax advisor-এর বিকল্প?",
+          "answer": "না। Start Koro AI educational ও operational guidance-এর জন্য। Legal, tax, regulatory বা high-stakes decision-এর আগে qualified professional বা official authority দিয়ে verify করা উচিত।"
+        },
+        {
+          "question": "এটি কি Bangla support করে?",
+          "answer": "হ্যাঁ। Product direction English ও Bangla দুটিই support করে, যাতে entrepreneurs নিজেদের সুবিধাজনক ভাষায় কাজ করতে পারেন।"
+        },
+        {
+          "question": "Admins কি Excel FAQ data upload করতে পারেন?",
+          "answer": "হ্যাঁ। Admins structured CSV বা Excel knowledge import করতে পারেন, যাতে assistant curated business Q&A row থেকে answer দিতে পারে।"
+        },
+        {
+          "question": "এটি কি early-stage founders-দের জন্য উপযোগী?",
+          "answer": "হ্যাঁ। Platform-টি founders, freelancers, online sellers এবং small teams-দের জন্য বিশেষভাবে useful, যারা প্রথমে কী করবে তা নিয়ে clarity চান।"
+        },
+        {
+          "question": "AI কীভাবে knowledge base ব্যবহার করে?",
+          "answer": "Assistant answer generate করার আগে curated knowledge থেকে relevant chunk retrieve করে, তাই response stored business reference ও admin-uploaded content-এর ভিত্তিতে হতে পারে।"
+        }
+      ]
+    },
+    "finalCta": {
+      "badge": "শুরু করতে প্রস্তুত?",
+      "title": "আপনার business idea-কে clear action plan-এ রূপ দিতে প্রস্তুত?",
+      "description": "Start Koro AI-কে আপনার প্রথম প্রশ্ন করুন এবং Bangladesh, আপনার business type ও next real decision অনুযায়ী practical roadmap পান।",
+      "primary": "AI-কে জিজ্ঞাসা শুরু করুন",
+      "secondary": "Knowledge Base দেখুন"
+    },
+    "footer": {
+      "description": "Bangladeshi entrepreneurs, startups, SMEs, freelancers এবং online sellers-দের জন্য AI-powered business assistant, যারা clearer next step চান।",
+      "product": "Product",
+      "journey": "Journey",
+      "toolkits": "Toolkits",
+      "resources": "Resources",
+      "faq": "FAQ",
+      "notes": "Notes",
+      "noteText": "Guidance educational ও operational প্রকৃতির। Legal, tax এবং regulated বিষয় qualified professional বা official authority দিয়ে verify করা উচিত।",
+      "poweredBy": "Powered by Preneur Lab"
+    },
+    "scrollTop": "উপরে যান"
+  },
+  "chat": {
+    "authMessage": "Authentication-এর পরে chat ব্যবহার করা যাবে।",
+    "chats": "চ্যাট",
+    "new": "নতুন",
+    "newChat": "নতুন চ্যাট",
+    "noChat": "কোনো চ্যাট নেই",
+    "openChats": "চ্যাট খুলুন",
+    "startNewChat": "নতুন chat শুরু করুন",
+    "loadingChats": "চ্যাট লোড হচ্ছে...",
+    "emptyChats": "এখনও কোনো chat নেই। প্রথম message পাঠিয়ে একটি chat তৈরি করুন।",
+    "noSelected": "আগের কোনো chat select করা নেই। নিচে লেখা শুরু করলে নতুন chat তৈরি হবে।",
+    "loadingHistory": "Chat history লোড হচ্ছে...",
+    "emptyMessages": "এখনও আগের কোনো message নেই। এখন conversation শুরু করুন।",
+    "uploadFiles": "ফাইল আপলোড",
+    "attachFiles": "ফাইল যুক্ত করুন",
+    "removeAttachment": "{{name}} সরান",
+    "placeholder": "StartKoro-তে message লিখুন... (পাঠাতে Enter, নতুন লাইনে Shift+Enter)",
+    "send": "পাঠান",
+    "sending": "পাঠানো হচ্ছে...",
+    "tip": "টিপ: নতুন লাইনের জন্য",
+    "shift": "Shift",
+    "enter": "Enter",
+    "newLine": "চাপুন।",
+    "promptDescription": "Chat name ছোট ও পরিষ্কার রাখুন। পরে পরিবর্তন করা যাবে।",
+    "namePlaceholder": "নাম",
+    "createChat": "Chat তৈরি করুন",
+    "renameChat": "Chat rename করুন",
+    "deleteChat": "Chat delete করুন",
+    "deleteConfirm": "\"{{name}}\" স্থায়ীভাবে delete করবেন? এতে chat এবং সব message মুছে যাবে।",
+    "chatActions": "Chat actions",
+    "chatMenu": "Chat menu",
+    "rename": "Rename"
+  },
+  "admin": {
+    "console": "Admin Console",
+    "knowledgeOps": "Knowledge Ops",
+    "sidebarDescription": "Startup guidance, bulk import এবং retrieval library manage করুন।",
+    "workspaceTitle": "Admin workspace",
+    "workspaceDescription": "Structured knowledge upload করুন, manual answer যোগ করুন এবং retrieval dataset maintain করুন।",
+    "sections": {
+      "upload": { "label": "Bulk Upload", "description": "CSV বা Excel knowledge row import করুন।" },
+      "manual": { "label": "Manual QA", "description": "একটি curated answer যোগ করুন।" },
+      "library": { "label": "Knowledge Library", "description": "Imported document review ও remove করুন।" },
+      "users": { "label": "Users", "description": "User search করুন এবং role manage করুন।" }
+    },
+    "bulkTitle": "Bulk knowledge import",
+    "bulkDescription": "`.csv`, `.xlsx`, বা `.xls` file upload করুন। Expected columns: `title`, `question`, `answer`.",
+    "selectedFile": "Selected file: {{name}}",
+    "noFile": "এখনও কোনো file select করা হয়নি।",
+    "preview": "Preview",
+    "previewDescription": "Knowledge base-এ import করার আগে কয়েকটি row review করুন।",
+    "importRows": "Row import করুন",
+    "importing": "Import হচ্ছে...",
+    "readingSpreadsheet": "Spreadsheet পড়া হচ্ছে...",
+    "noParsedRows": "এখনও parsed row নেই। Mapped content preview করতে file upload করুন।",
+    "checklist": "Import checklist",
+    "checklistItems": [
+      "প্রতি row-তে একটি knowledge item রাখুন।",
+      "Library scan করার সুবিধার জন্য concise title ব্যবহার করুন।",
+      "`title`, `question`, বা `answer` না থাকলে importer row skip করে।",
+      "প্রতিটি imported row একটি searchable manual QA document হয়।"
+    ],
+    "manualTitle": "Manual knowledge entry",
+    "manualDescription": "যে curated answer সহজে retrieve ও maintain করা দরকার, তার জন্য এটি ব্যবহার করুন।",
+    "title": "Title",
+    "titlePlaceholder": "How to validate a B2B idea",
+    "question": "Question",
+    "questionPlaceholder": "MVP বানানোর আগে founder-এর কী করা উচিত?",
+    "answer": "Answer",
+    "answerPlaceholder": "আগে buyer-দের সঙ্গে কথা বলুন, workflow pain confirm করুন, তারপর willingness to pay test করুন...",
+    "saveKnowledge": "Knowledge save করুন",
+    "libraryTitle": "Knowledge library",
+    "libraryDescription": "Retrieval power করে এমন imported document review করুন।",
+    "refresh": "Refresh",
+    "noDocuments": "এখনও কোনো knowledge document পাওয়া যায়নি।",
+    "userTitle": "User management",
+    "userDescription": "Name, email বা mobile number দিয়ে user search করুন এবং account role পরিবর্তন করুন।",
+    "searchPlaceholder": "Name, email বা mobile number দিয়ে search করুন",
+    "noUsers": "এই search-এ কোনো user পাওয়া যায়নি।",
+    "noMobile": "Mobile number নেই",
+    "makeUser": "User করুন",
+    "makeAdmin": "Admin করুন",
+    "updating": "Update হচ্ছে...",
+    "fallbackError": "কিছু ভুল হয়েছে। আবার চেষ্টা করুন।",
+    "parsedRows": "{{file}} থেকে {{count}}টি knowledge row parsed হয়েছে।",
+    "noValidRows": "Valid row পাওয়া যায়নি। title, question এবং answer-এর মতো column expected.",
+    "processedRows": "{{count}}টি row processed হয়েছে।",
+    "insertedRows": "Inserted: {{count}}.",
+    "skippedRows": "Skipped: {{count}}.",
+    "failedRows": "Failed: {{count}}.",
+    "skippedRowsDetail": "Skipped rows: {{rows}}{{suffix}}",
+    "failedRowsDetail": "Failed rows: {{rows}}{{suffix}}",
+    "knowledgeSaved": "Knowledge entry সফলভাবে save হয়েছে।",
+    "documentDeleted": "Knowledge document delete হয়েছে।",
+    "roleUpdated": "{{name}}-এর role {{role}} করা হয়েছে।"
+  },
+  "notFound": {
+    "title": "Page পাওয়া যায়নি",
+    "description": "আপনি যে page খুঁজছেন সেটি নেই।",
+    "goHome": "Home-এ যান"
+  }
+}

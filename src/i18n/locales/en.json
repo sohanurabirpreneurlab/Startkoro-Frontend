@@ -1,0 +1,469 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "refreshing": "Refreshing...",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "lightTheme": "Light theme",
+    "remove": "Remove",
+    "error": "Error",
+    "unknownDate": "Unknown date",
+    "created": "Created {{date}}",
+    "updated": "Updated {{date}}"
+  },
+  "navbar": {
+    "tagline": "Business guidance for Bangladesh",
+    "knowledgeBase": "Knowledge Base",
+    "aiAssistant": "AI Assistant",
+    "admin": "Admin",
+    "login": "Login",
+    "signup": "Sign up",
+    "askAI": "Ask AI",
+    "workspaceBadge": "AI-powered business workspace",
+    "profile": "Profile",
+    "profileDemo": "Profile (demo)",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "languageToggle": "বাংলা"
+  },
+  "auth": {
+    "requiredTitle": "Authorization required",
+    "requiredDescription": "Please login or sign up to continue.",
+    "chatRequiredDescription": "Please login or sign up to access chat.",
+    "chatsRequiredDescription": "Please login or sign up to access your chats.",
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Login to continue using your real backend account.",
+      "google": "Continue with Google",
+      "divider": "or continue with",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Password",
+      "submit": "Login",
+      "submitting": "Signing in...",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters"
+    },
+    "signup": {
+      "title": "Create your account",
+      "subtitle": "Sign up to create a real backend account for testing.",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "firstName": "First name",
+      "firstNamePlaceholder": "First",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Last",
+      "mobile": "Mobile number",
+      "mobilePlaceholder": "+8801712345678",
+      "address": "Address",
+      "addressPlaceholder": "Street, city, country",
+      "confirmPassword": "Confirm password",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "mobileRequired": "Mobile number is required",
+      "mobileInvalid": "Enter a valid mobile number",
+      "addressRequired": "Address is required",
+      "addressMin": "Address must be at least 5 characters",
+      "confirmPasswordRequired": "Confirm your password",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "country": {
+      "label": "Country code",
+      "select": "Select..."
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "AI workspace for Bangladeshi business operators",
+      "title": "Launch and grow your business in Bangladesh with AI-guided support",
+      "subtitle": "Get practical guidance for trade license, eTIN, VAT, RJSC, finance, payments, compliance, and startup planning in one localized AI workspace built for founders, freelancers, online sellers, and SMEs.",
+      "primaryCta": "Ask Start Koro AI",
+      "secondaryCta": "Plan My Business Journey",
+      "panelTitle": "Start Koro AI",
+      "panelSubtitle": "Localized business planning and compliance guidance",
+      "panelBadge": "Knowledge-backed",
+      "sampleUser": "I want to start an online clothing business in Dhaka. What should I do first?",
+      "sampleAssistant": "Start with your business structure, trade license, eTIN, payment setup, and basic bookkeeping. I can prepare a step-by-step checklist based on your business type, location, and budget.",
+      "firstStepsTitle": "Suggested first steps",
+      "firstStepsText": "Trade license, eTIN, payment method, cost plan",
+      "localizedTitle": "Localized output",
+      "localizedText": "Bangladesh-focused guidance with practical action order"
+    },
+    "trustBadges": [
+      "Bangladesh-focused guidance",
+      "English & Bangla support",
+      "Built for founders, freelancers, and SMEs",
+      "Knowledge-base powered answers"
+    ],
+    "stats": [
+      {
+        "title": "Registration clarity",
+        "text": "Understand trade license, eTIN, RJSC, VAT/BIN, and other starting requirements in a simpler flow."
+      },
+      {
+        "title": "Finance and payments",
+        "text": "Get support for pricing, gateway choices, startup costing, and basic bookkeeping habits."
+      },
+      {
+        "title": "Trustworthy guidance",
+        "text": "Use curated knowledge and practical context instead of chasing scattered answers across random links."
+      },
+      {
+        "title": "Workspace continuity",
+        "text": "Keep your planning, questions, and next steps in one reusable AI-powered business workspace."
+      }
+    ],
+    "problem": {
+      "eyebrow": "Why it matters",
+      "title": "Bangladesh founders often need guidance before they need complexity",
+      "description": "Starting a business should not require guessing your way through registrations, taxes, payments, and compliance. Start Koro AI is designed to reduce uncertainty and organize what comes next.",
+      "solutionTitle": "What Start Koro AI solves",
+      "solutionText": "It takes scattered startup and compliance questions and turns them into localized, practical guidance you can actually act on. Instead of information overload, you get clearer decisions, better sequencing, and a more confident path from idea to operation.",
+      "cards": [
+        {
+          "title": "Too many scattered rules",
+          "description": "Registration, tax, banking, payment setup, and compliance information often live in separate places with different wording."
+        },
+        {
+          "title": "Unclear registration steps",
+          "description": "Founders lose time trying to figure out what should come first, what documents matter, and which authority handles each step."
+        },
+        {
+          "title": "No single startup roadmap",
+          "description": "Most early operators need one practical workspace that turns business questions into an ordered, realistic action plan."
+        }
+      ]
+    },
+    "journey": {
+      "eyebrow": "How it works",
+      "title": "A practical workflow for turning business questions into action",
+      "description": "The product is built to help founders move from uncertainty to ordered execution without losing context between sessions.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Describe your business",
+          "description": "Share what you want to launch, where you will operate, and what stage you are in."
+        },
+        {
+          "number": "02",
+          "title": "Get localized AI guidance",
+          "description": "Receive practical guidance for trade license, eTIN, VAT/BIN, RJSC, finance, and payments."
+        },
+        {
+          "number": "03",
+          "title": "Follow your checklist",
+          "description": "Turn advice into a clear sequence of tasks, documents, and next decisions tailored to Bangladesh."
+        },
+        {
+          "number": "04",
+          "title": "Save and continue later",
+          "description": "Keep your chats, revisit past answers, and continue planning as your business grows."
+        }
+      ]
+    },
+    "features": {
+      "eyebrow": "Core features",
+      "title": "A polished founder workspace, not just a basic chat box",
+      "description": "Start Koro AI combines assistant guidance, structured knowledge, and reusable business tools into a more complete operating layer for entrepreneurs in Bangladesh.",
+      "items": [
+        {
+          "title": "AI Business Advisor",
+          "description": "Ask business questions in English or Bangla and get practical answers grounded in local startup and compliance context."
+        },
+        {
+          "title": "Startup Journey Builder",
+          "description": "Break a complex launch plan into a personalized sequence of steps, documents, registrations, and checkpoints."
+        },
+        {
+          "title": "Knowledge Base Search",
+          "description": "Get retrieval-backed responses from curated guidance, business references, templates, and operational notes."
+        },
+        {
+          "title": "Excel Knowledge Upload",
+          "description": "Admins can import structured CSV or Excel knowledge so the assistant can answer from a stronger local dataset."
+        },
+        {
+          "title": "Business Templates & Tools",
+          "description": "Access planning prompts, payment setup references, compliance checklists, calculators, and practical starter assets."
+        },
+        {
+          "title": "User Workspace & History",
+          "description": "Save conversations, reopen business threads, and keep planning work organized instead of restarting from scratch."
+        }
+      ]
+    },
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "Designed for the people who actually build businesses",
+      "description": "Whether you are launching your first idea or supporting multiple early-stage operators, Start Koro AI is designed to be useful in real founder workflows.",
+      "items": [
+        {
+          "title": "First-time founders",
+          "description": "Understand what to do first, which registrations matter, and how to avoid early-stage compliance confusion."
+        },
+        {
+          "title": "Freelancers",
+          "description": "Get help with eTIN, payment collection, pricing setup, and operating more professionally with clients."
+        },
+        {
+          "title": "Online sellers",
+          "description": "Plan trade license basics, payment gateways, bookkeeping habits, and low-cost growth decisions for commerce."
+        },
+        {
+          "title": "SME owners",
+          "description": "Use Start Koro AI as a practical support layer for tax questions, operational planning, and business process clarity."
+        },
+        {
+          "title": "Student entrepreneurs",
+          "description": "Validate ideas, estimate setup needs, and move from side-project thinking into an actionable business roadmap."
+        },
+        {
+          "title": "Incubators & startup teams",
+          "description": "Support portfolio founders with a reusable knowledge system for common questions, workflows, and local business basics."
+        }
+      ]
+    },
+    "popularQuestions": {
+      "eyebrow": "Popular questions",
+      "title": "The kinds of startup and compliance questions people ask first",
+      "description": "These are common questions founders, freelancers, and online sellers can use as a starting point inside the AI assistant.",
+      "items": [
+        "How do I get a trade license in Dhaka?",
+        "Do freelancers in Bangladesh need eTIN?",
+        "When should I register a private limited company with RJSC?",
+        "What documents are needed for VAT/BIN registration?",
+        "How much capital do I need to start an online clothing shop?",
+        "Which payment gateways work for small online sellers?"
+      ]
+    },
+    "resources": {
+      "eyebrow": "Trusted resources",
+      "title": "Keep official ecosystem references within reach",
+      "description": "Start Koro AI can help you navigate next steps, but official authorities and qualified advisors should be used to verify legal, tax, and regulatory matters.",
+      "warning": "Legal, tax, regulatory, and licensing matters should be verified with official authorities or qualified professionals before final action.",
+      "items": [
+        { "name": "RJSC", "note": "Company registration and corporate filings" },
+        { "name": "NBR", "note": "Tax authority information and taxpayer services" },
+        { "name": "VAT Online", "note": "VAT registration and related digital services" },
+        { "name": "BIDA", "note": "Investment and business facilitation support" },
+        { "name": "Bangladesh Bank", "note": "Financial system references and regulatory notices" },
+        { "name": "ICT Division", "note": "Digital ecosystem and innovation initiatives" },
+        { "name": "Startup Bangladesh", "note": "Startup ecosystem programs and funding initiatives" },
+        { "name": "SME Foundation", "note": "Small business support, training, and resources" }
+      ]
+    },
+    "toolkits": {
+      "eyebrow": "Business toolkits",
+      "title": "Useful starter assets for operating with more confidence",
+      "description": "Toolkits help users move from abstract advice into practical execution with planning, finance, compliance, and operating support.",
+      "items": [
+        {
+          "label": "Payments",
+          "title": "Digital Payments for Online Sellers",
+          "description": "Understand gateway options, collection flow, settlement expectations, and customer trust considerations."
+        },
+        {
+          "label": "Hiring",
+          "title": "Hiring Basics for Early Startups",
+          "description": "Get lightweight guidance for your first hires, role clarity, and realistic startup operating structure."
+        },
+        {
+          "label": "Planning",
+          "title": "Lean Business Plan Template",
+          "description": "Turn a rough idea into a clear offer, customer segment, cost view, and early traction plan."
+        },
+        {
+          "label": "Compliance",
+          "title": "Compliance Calendar",
+          "description": "Track recurring filing, tax, registration, and operational reminders in one simple planning framework."
+        },
+        {
+          "label": "Finance",
+          "title": "Cost Calculator",
+          "description": "Estimate startup costs, recurring expenses, and basic launch runway before making early commitments."
+        },
+        {
+          "label": "Operations",
+          "title": "Bookkeeping Starter Sheet",
+          "description": "Start recording sales, costs, and cash movement with a simple structure that is easy to maintain."
+        }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Founder feedback",
+      "title": "Built to feel useful, not abstract",
+      "description": "The product should help operators move faster on practical decisions without pretending to replace professional judgment.",
+      "items": [
+        {
+          "name": "Nusrat Jahan",
+          "role": "Founder, boutique ecommerce brand",
+          "quote": "It helped me turn a vague business idea into a clear checklist for licensing, payments, and first-month operations."
+        },
+        {
+          "name": "Arif Hossain",
+          "role": "Freelance consultant",
+          "quote": "Instead of searching five different places, I could ask one question and get a practical answer that actually fit Bangladesh."
+        },
+        {
+          "name": "Tahmid Rahman",
+          "role": "Startup program manager",
+          "quote": "The structure feels useful for early founders who need direction, not theory. It shortens the time between confusion and action."
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Responsible AI",
+      "title": "Clear guidance, with responsible limits",
+      "description": "Start Koro AI is meant to make business planning and operational guidance more accessible. It should be used as a practical assistant, not as a substitute for regulated professional advice.",
+      "items": [
+        {
+          "question": "Can this replace a lawyer or tax advisor?",
+          "answer": "No. Start Koro AI is designed for educational and operational guidance. For legal, tax, regulatory, or high-stakes decisions, users should verify with qualified professionals or official authorities."
+        },
+        {
+          "question": "Does it support Bangla?",
+          "answer": "Yes. The product direction supports both English and Bangla so entrepreneurs can work in the language that is more practical for them."
+        },
+        {
+          "question": "Can admins upload Excel FAQ data?",
+          "answer": "Yes. Admins can import structured CSV or Excel knowledge so the assistant can answer from curated rows of business Q&A."
+        },
+        {
+          "question": "Is it suitable for early-stage founders?",
+          "answer": "Yes. The platform is especially useful for founders, freelancers, online sellers, and small teams who need clarity on what to do first."
+        },
+        {
+          "question": "How does the AI use the knowledge base?",
+          "answer": "The assistant retrieves relevant chunks from curated knowledge before generating an answer, so responses can be grounded in your stored business references and admin-uploaded content."
+        }
+      ]
+    },
+    "finalCta": {
+      "badge": "Ready to start?",
+      "title": "Ready to turn your business idea into a clear action plan?",
+      "description": "Ask Start Koro AI your first question and get a practical roadmap tailored for Bangladesh, your business type, and your next real decision.",
+      "primary": "Start Asking AI",
+      "secondary": "Explore Knowledge Base"
+    },
+    "footer": {
+      "description": "An AI-powered business assistant for Bangladeshi entrepreneurs, startups, SMEs, freelancers, and online sellers who need clearer next steps.",
+      "product": "Product",
+      "journey": "Journey",
+      "toolkits": "Toolkits",
+      "resources": "Resources",
+      "faq": "FAQ",
+      "notes": "Notes",
+      "noteText": "Guidance is educational and operational in nature. Users should verify legal, tax, and regulated matters with qualified professionals or official authorities.",
+      "poweredBy": "Powered by Preneur Lab"
+    },
+    "scrollTop": "Take me to top"
+  },
+  "chat": {
+    "authMessage": "Chat is available after authentication.",
+    "chats": "Chats",
+    "new": "New",
+    "newChat": "New chat",
+    "noChat": "No chat",
+    "openChats": "Open chats",
+    "startNewChat": "Start a new chat",
+    "loadingChats": "Loading chats...",
+    "emptyChats": "No chats yet. Send your first message to create one.",
+    "noSelected": "No previous chat selected. Start typing below to create a new chat.",
+    "loadingHistory": "Loading chat history...",
+    "emptyMessages": "No previous chat messages yet. Start the conversation now.",
+    "uploadFiles": "Upload files",
+    "attachFiles": "Attach files",
+    "removeAttachment": "Remove {{name}}",
+    "placeholder": "Message StartKoro... (Enter to send, Shift+Enter for new line)",
+    "send": "Send",
+    "sending": "Sending...",
+    "tip": "Tip: Press",
+    "shift": "Shift",
+    "enter": "Enter",
+    "newLine": "for a new line.",
+    "promptDescription": "Keep chat names short and clear. You can change them later.",
+    "namePlaceholder": "Name",
+    "createChat": "Create chat",
+    "renameChat": "Rename chat",
+    "deleteChat": "Delete chat",
+    "deleteConfirm": "Delete \"{{name}}\" permanently? This will remove the chat and all of its messages.",
+    "chatActions": "Chat actions",
+    "chatMenu": "Chat menu",
+    "rename": "Rename"
+  },
+  "admin": {
+    "console": "Admin Console",
+    "knowledgeOps": "Knowledge Ops",
+    "sidebarDescription": "Manage startup guidance, bulk imports, and the retrieval library.",
+    "workspaceTitle": "Admin workspace",
+    "workspaceDescription": "Upload structured knowledge, add manual answers, and maintain the retrieval dataset.",
+    "sections": {
+      "upload": { "label": "Bulk Upload", "description": "Import CSV or Excel knowledge rows." },
+      "manual": { "label": "Manual QA", "description": "Add a single curated answer." },
+      "library": { "label": "Knowledge Library", "description": "Review and remove imported documents." },
+      "users": { "label": "Users", "description": "Search users and manage roles." }
+    },
+    "bulkTitle": "Bulk knowledge import",
+    "bulkDescription": "Upload a `.csv`, `.xlsx`, or `.xls` file. Expected columns: `title`, `question`, `answer`.",
+    "selectedFile": "Selected file: {{name}}",
+    "noFile": "No file selected yet.",
+    "preview": "Preview",
+    "previewDescription": "Review a few rows before importing them into the knowledge base.",
+    "importRows": "Import rows",
+    "importing": "Importing...",
+    "readingSpreadsheet": "Reading the spreadsheet...",
+    "noParsedRows": "No parsed rows yet. Upload a file to preview the mapped content.",
+    "checklist": "Import checklist",
+    "checklistItems": [
+      "Keep one knowledge item per row.",
+      "Use concise titles so admins can scan the library later.",
+      "The importer skips rows missing `title`, `question`, or `answer`.",
+      "Each imported row becomes one searchable manual QA document."
+    ],
+    "manualTitle": "Manual knowledge entry",
+    "manualDescription": "Use this for curated answers that should be easy to retrieve and maintain.",
+    "title": "Title",
+    "titlePlaceholder": "How to validate a B2B idea",
+    "question": "Question",
+    "questionPlaceholder": "What should a founder do before building the MVP?",
+    "answer": "Answer",
+    "answerPlaceholder": "Talk to buyers first, confirm the workflow pain, then test willingness to pay...",
+    "saveKnowledge": "Save knowledge",
+    "libraryTitle": "Knowledge library",
+    "libraryDescription": "Review the imported documents that power retrieval.",
+    "refresh": "Refresh",
+    "noDocuments": "No knowledge documents found yet.",
+    "userTitle": "User management",
+    "userDescription": "Search users by name, email, or mobile number and change account roles.",
+    "searchPlaceholder": "Search by name, email, or mobile number",
+    "noUsers": "No users found for this search.",
+    "noMobile": "No mobile number",
+    "makeUser": "Make User",
+    "makeAdmin": "Make Admin",
+    "updating": "Updating...",
+    "fallbackError": "Something went wrong. Please try again.",
+    "parsedRows": "Parsed {{count}} knowledge rows from {{file}}.",
+    "noValidRows": "No valid rows found. Expected columns like title, question, and answer.",
+    "processedRows": "Processed {{count}} rows.",
+    "insertedRows": "Inserted: {{count}}.",
+    "skippedRows": "Skipped: {{count}}.",
+    "failedRows": "Failed: {{count}}.",
+    "skippedRowsDetail": "Skipped rows: {{rows}}{{suffix}}",
+    "failedRowsDetail": "Failed rows: {{rows}}{{suffix}}",
+    "knowledgeSaved": "Knowledge entry saved successfully.",
+    "documentDeleted": "Knowledge document deleted.",
+    "roleUpdated": "{{name}}'s role was updated to {{role}}."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist.",
+    "goHome": "Go home"
+  }
+}
