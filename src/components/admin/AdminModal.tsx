@@ -689,7 +689,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
                       >
                         <div className="min-w-0">
                           <div className="text-sm text-muted-foreground">
-                            #{document.id} • {document.source_type} • {document.status}
+                            #{document.id} â€¢ {document.source_type} â€¢ {document.status}
                           </div>
                           <div className="mt-1 truncate text-base font-semibold">{document.title}</div>
                           <div className="mt-1 text-sm text-muted-foreground">
