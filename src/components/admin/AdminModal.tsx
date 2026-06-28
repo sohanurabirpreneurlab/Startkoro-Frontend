@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import axios from "axios";
-import { FileSpreadsheet, Library, Search, Shield, Trash2, UploadCloud, UserCog, X } from "lucide-react";
+import { ArrowLeft, FileSpreadsheet, Library, Search, Shield, Trash2, UploadCloud, UserCog, X } from "lucide-react";
 import { api } from "@/services/api";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,6 +33,9 @@ type KnowledgeDocument = {
   id: number;
   title: string;
   source_type: string;
+  original_question: string | null;
+  original_answer: string | null;
+  category?: string | null;
   status: "draft" | "ready" | "archived";
   created_at?: string;
 };
@@ -154,6 +157,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
   const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [activeSection, setActiveSection] = useState<AdminSection>("upload");
+  const [isLibrarySidebarHidden, setIsLibrarySidebarHidden] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedFileName, setSelectedFileName] = useState("");
   const [parsedRows, setParsedRows] = useState<ParsedKnowledgeRow[]>([]);
@@ -231,6 +235,11 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
     }
 
     onOpenChange(nextOpen);
+  }
+
+  function handleSectionSelect(section: AdminSection): void {
+    setActiveSection(section);
+    setIsLibrarySidebarHidden(section === "library");
   }
 
   function getErrorMessage(error: unknown): string {
@@ -555,7 +564,8 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
     <>
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent className="h-[90vh] max-h-[90vh] max-w-6xl overflow-hidden border-0 bg-card p-0 shadow-soft md:h-[780px] md:max-h-[90vh]">
-          <div className="grid h-full min-h-0 grid-cols-1 md:grid-cols-[260px_minmax(0,1fr)]">
+          <div className={cn("grid h-full min-h-0 grid-cols-1", !isLibrarySidebarHidden && "md:grid-cols-[260px_minmax(0,1fr)]")}>
+            {!isLibrarySidebarHidden ? (
             <aside className="min-h-0 overflow-auto border-b bg-slate-950 text-slate-50 md:h-full md:border-b-0 md:border-r md:border-slate-800">
             <div className="border-b border-slate-800 px-5 py-5">
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-400">
@@ -582,7 +592,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
                         ? "border-slate-600 bg-slate-800 text-slate-50"
                         : "border-transparent bg-transparent text-slate-300 hover:border-slate-800 hover:bg-slate-900",
                     )}
-                    onClick={() => setActiveSection(section.id)}
+                    onClick={() => handleSectionSelect(section.id)}
                   >
                     <div className="flex items-center gap-3">
                       <Icon className="h-4 w-4" />
@@ -596,6 +606,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
               })}
             </nav>
           </aside>
+            ) : null}
 
             <section className="flex min-h-0 h-full flex-col overflow-hidden bg-gradient-to-b from-background via-background to-accent/20">
             <DialogHeader className="border-b px-6 py-5">
@@ -818,7 +829,16 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
               {activeSection === "library" ? (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between gap-3">
-                    <div>
+                    <div className="min-w-0">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="mb-3 -ml-3 h-9 px-3"
+                        onClick={() => setIsLibrarySidebarHidden(false)}
+                      >
+                        <ArrowLeft className="h-4 w-4" />
+                        {t("admin.backToSidebar")}
+                      </Button>
                       <h3 className="text-lg font-semibold">{t("admin.libraryTitle")}</h3>
                       <p className="text-sm text-muted-foreground">
                         {t("admin.libraryDescription")}
@@ -829,38 +849,65 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
                     </Button>
                   </div>
 
-                  <div className="grid gap-4">
+                  <div className="overflow-hidden rounded-2xl border bg-card/80">
                     {documents.length === 0 && !isLoadingDocuments ? (
-                      <div className="rounded-2xl border bg-card/80 p-5 text-sm text-muted-foreground">
+                      <div className="p-5 text-sm text-muted-foreground">
                         {t("admin.noDocuments")}
                       </div>
                     ) : null}
 
-                    {documents.map((document) => (
-                      <div
-                        key={document.id}
-                        className="flex flex-col gap-4 rounded-2xl border bg-card/80 p-5 lg:flex-row lg:items-center lg:justify-between"
-                      >
-                        <div className="min-w-0">
-                          <div className="text-sm text-muted-foreground">
-                            #{document.id} â€¢ {document.source_type} â€¢ {document.status}
-                          </div>
-                          <div className="mt-1 truncate text-base font-semibold">{document.title}</div>
-                          <div className="mt-1 text-sm text-muted-foreground">
-                            {t("common.created", { date: formatDate(document.created_at, t("common.unknownDate")) })}
-                          </div>
-                        </div>
-
-                        <Button
-                          variant="destructive"
-                          onClick={() => void handleDeleteDocument(document.id)}
-                          disabled={deletingDocumentId === document.id}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                          {deletingDocumentId === document.id ? t("common.deleting") : t("common.delete")}
-                        </Button>
+                    {documents.length > 0 ? (
+                      <div className="overflow-auto">
+                        <table className="min-w-[980px] w-full text-left text-sm">
+                          <thead className="bg-slate-50 text-slate-600">
+                            <tr className="border-b">
+                              <th className="px-4 py-3 font-medium">{t("admin.title")}</th>
+                              <th className="px-4 py-3 font-medium">{t("admin.question")}</th>
+                              <th className="px-4 py-3 font-medium">{t("admin.answer")}</th>
+                              <th className="px-4 py-3 font-medium">{t("admin.categoryLabel")}</th>
+                              <th className="px-4 py-3 font-medium">{t("admin.uploadedTimeLabel")}</th>
+                              <th className="px-4 py-3 font-medium">{t("admin.actionsLabel")}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {documents.map((document) => (
+                              <tr key={document.id} className="border-b align-top last:border-b-0">
+                                <td className="px-4 py-4">
+                                  <div className="min-w-[180px] font-semibold text-slate-900">{document.title}</div>
+                                  <div className="mt-1 text-xs text-muted-foreground">
+                                    #{document.id} • {document.source_type} • {document.status}
+                                  </div>
+                                </td>
+                                <td className="max-w-[260px] px-4 py-4 text-slate-700">
+                                  <div className="line-clamp-4 whitespace-pre-wrap">{document.original_question || "—"}</div>
+                                </td>
+                                <td className="max-w-[320px] px-4 py-4 text-slate-700">
+                                  <div className="line-clamp-4 whitespace-pre-wrap">{document.original_answer || "—"}</div>
+                                </td>
+                                <td className="px-4 py-4">
+                                  <span className="inline-flex rounded-full border bg-background px-2.5 py-1 text-xs text-slate-700">
+                                    {document.category?.trim() || t("admin.noCategory")}
+                                  </span>
+                                </td>
+                                <td className="px-4 py-4 text-slate-600">
+                                  {formatDate(document.created_at, t("common.unknownDate"))}
+                                </td>
+                                <td className="px-4 py-4">
+                                  <Button
+                                    variant="destructive"
+                                    onClick={() => void handleDeleteDocument(document.id)}
+                                    disabled={deletingDocumentId === document.id}
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                    {deletingDocumentId === document.id ? t("common.deleting") : t("common.delete")}
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
-                    ))}
+                    ) : null}
                   </div>
                 </div>
               ) : null}
