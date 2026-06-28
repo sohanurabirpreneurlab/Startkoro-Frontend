@@ -27,7 +27,7 @@ import {
   Users2,
   WalletCards,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -97,6 +97,7 @@ function SectionHeading({
 export function HomePage() {
   const { t } = useTranslation();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const pageRef = useRef<HTMLDivElement | null>(null);
 
   const trustBadges = t("home.trustBadges", { returnObjects: true }) as string[];
   const stats = t("home.stats", { returnObjects: true }) as TextCard[];
@@ -111,24 +112,35 @@ export function HomePage() {
   const faqs = t("home.faq.items", { returnObjects: true }) as Faq[];
 
   useEffect(() => {
+    const page = pageRef.current;
+
+    if (!page) {
+      return;
+    }
+
+    const currentPage = page;
+
     function onScroll() {
-      setShowScrollTop(window.scrollY > 480);
+      setShowScrollTop(currentPage.scrollTop > 480);
     }
 
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    currentPage.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      currentPage.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    pageRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
-    <div className="relative h-full overflow-auto bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.12),_transparent_26%),radial-gradient(circle_at_right,_rgba(59,130,246,0.10),_transparent_24%),linear-gradient(180deg,_#f8fbff_0%,_#f7fafc_42%,_#ffffff_100%)]">
+    <div
+      ref={pageRef}
+      className="relative h-full overflow-auto bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.12),_transparent_26%),radial-gradient(circle_at_right,_rgba(59,130,246,0.10),_transparent_24%),linear-gradient(180deg,_#f8fbff_0%,_#f7fafc_42%,_#ffffff_100%)]"
+    >
       <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <section className="relative overflow-hidden rounded-[32px] border border-slate-200/80 bg-[linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(17,94,89,0.92)_45%,_rgba(79,70,229,0.88)_100%)] px-6 py-10 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)] md:px-10 md:py-14">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_32%),radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.18),_transparent_28%)]" />

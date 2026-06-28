@@ -104,7 +104,7 @@ export function Composer() {
             onChange={(e) => onFilesSelected(e.target.files)}
           />
 
-          <Button
+          {/* <Button
             variant="outline"
             size="icon"
             onClick={onPickFiles}
@@ -113,7 +113,7 @@ export function Composer() {
           >
             <Paperclip className="h-4 w-4" />
             <span className="sr-only">{t("chat.attachFiles")}</span>
-          </Button>
+          </Button> */}
 
           <div className="flex-1">
             <Textarea

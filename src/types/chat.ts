@@ -14,6 +14,7 @@ export type ChatMessage = {
   content: string;
   timestamp: number;
   attachments?: FileAttachment[];
+  pending?: boolean;
 };
 
 export type ChatThread = {

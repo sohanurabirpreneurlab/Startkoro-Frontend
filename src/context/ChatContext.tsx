@@ -5,6 +5,7 @@ import type { ChatMessage, ChatThread, FileAttachment } from "../types/chat";
 import { readFromStorage, writeToStorage } from "../utils/storage";
 import { io, type Socket } from "socket.io-client";
 import i18n from "@/i18n";
+import { createId } from "@/utils/id";
 
 type ChatState = {
   chats: ChatThread[];
@@ -111,6 +112,10 @@ function mergeUniqueMessages(messages: ChatMessage[]): ChatMessage[] {
     seen.add(message.id);
     return true;
   });
+}
+
+function removePendingMessages(messages: ChatMessage[]): ChatMessage[] {
+  return messages.filter((message) => !message.pending);
 }
 
 export function ChatProvider({ children }: { children: React.ReactNode }) {
@@ -266,7 +271,11 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
 
         const nextMessages =
           prev.activeChatId === payload.chatId
-            ? mergeUniqueMessages([...prev.activeMessages, mappedUserMessage, mappedAssistantMessage])
+            ? mergeUniqueMessages([
+                ...removePendingMessages(prev.activeMessages),
+                mappedUserMessage,
+                mappedAssistantMessage,
+              ])
             : prev.activeMessages;
 
         return {
@@ -329,9 +338,37 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    const optimisticUserMessage: ChatMessage = {
+      id: createId("user"),
+      role: "user",
+      content: trimmedText,
+      timestamp: Date.now(),
+      pending: true,
+    };
+    const optimisticAssistantMessage: ChatMessage = {
+      id: createId("assistant"),
+      role: "ai",
+      content: i18n.t("chat.processingAnswer"),
+      timestamp: Date.now() + 1,
+      pending: true,
+    };
+    const optimisticChatName = buildChatTitleFromMessage(trimmedText);
+
     setState((prev) => ({
       ...prev,
       isSendingMessage: true,
+      chats:
+        prev.activeChatId === null
+          ? [
+              {
+                id: "pending-chat",
+                name: optimisticChatName,
+                messages: [],
+              },
+              ...prev.chats,
+            ]
+          : prev.chats,
+      activeMessages: [...prev.activeMessages, optimisticUserMessage, optimisticAssistantMessage],
     }));
 
     try {
@@ -354,10 +391,10 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
             name: prev.chats.find((chat) => chat.id === chatId)?.name || nextChatName,
             messages: [],
           },
-          ...prev.chats.filter((chat) => chat.id !== chatId),
+          ...prev.chats.filter((chat) => chat.id !== chatId && chat.id !== "pending-chat"),
         ],
         activeMessages: mergeUniqueMessages([
-          ...prev.activeMessages,
+          ...removePendingMessages(prev.activeMessages),
           mappedUserMessage,
           mappedAssistantMessage,
         ]),
@@ -368,6 +405,8 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       setState((prev) => ({
         ...prev,
+        chats: prev.chats.filter((chat) => chat.id !== "pending-chat"),
+        activeMessages: removePendingMessages(prev.activeMessages),
         isSendingMessage: false,
       }));
       throw error;

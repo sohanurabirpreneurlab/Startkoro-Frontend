@@ -42,30 +42,29 @@ type KnowledgeDocumentsApiResponse = {
   data: KnowledgeDocument[];
 };
 
-type UploadSkippedRow = {
-  rowNumber: number;
-  question?: string;
-  reason: string;
-};
-
-type UploadFailedRow = {
-  rowNumber: number;
-  question?: string;
-  reason: string;
-};
-
-type KnowledgeUploadApiResponse = {
+type KnowledgeUploadStartApiResponse = {
   success: boolean;
   message: string;
   data: {
     batchId: string;
-    totalRows: number;
-    successCount: number;
-    skippedCount: number;
-    failedCount: number;
-    skippedRows: UploadSkippedRow[];
-    failedRows: UploadFailedRow[];
   };
+};
+
+interface UploadProgressData {
+  batchId: string;
+  status: "processing" | "completed" | "failed";
+  totalRows: number;
+  processedRows: number;
+  successCount: number;
+  failedCount: number;
+  skippedCount: number;
+  progressPercentage: number;
+  errorMessage?: string | null;
+}
+
+type UploadProgressApiResponse = {
+  success: boolean;
+  data: UploadProgressData;
 };
 
 type AdminUser = {
@@ -162,6 +161,10 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [isParsingFile, setIsParsingFile] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadProgressLabel, setUploadProgressLabel] = useState<string | null>(null);
+  const [uploadSummary, setUploadSummary] = useState<UploadProgressData | null>(null);
+  const [activeBatchId, setActiveBatchId] = useState<string | null>(null);
   const [isSavingManual, setIsSavingManual] = useState(false);
   const [isLoadingDocuments, setIsLoadingDocuments] = useState(false);
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
@@ -175,6 +178,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
     question: "",
     answer: "",
   });
+  const uploadPollIntervalRef = useRef<number | null>(null);
 
   const previewRows = useMemo(() => parsedRows.slice(0, 5), [parsedRows]);
   const adminSections = useMemo(
@@ -188,10 +192,26 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
   );
   const checklistItems = t("admin.checklistItems", { returnObjects: true }) as string[];
 
+  function clearUploadPolling(): void {
+    if (uploadPollIntervalRef.current !== null) {
+      window.clearInterval(uploadPollIntervalRef.current);
+      uploadPollIntervalRef.current = null;
+    }
+  }
+
+  function resetUploadProgressState(): void {
+    clearUploadPolling();
+    setActiveBatchId(null);
+    setUploadProgress(0);
+    setUploadProgressLabel(null);
+    setUploadSummary(null);
+  }
+
   function clearSelectedFile(): void {
     setSelectedFile(null);
     setSelectedFileName("");
     setParsedRows([]);
+    resetUploadProgressState();
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -199,7 +219,12 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
   }
 
   function handleOpenChange(nextOpen: boolean): void {
+    if (!nextOpen && isImporting) {
+      return;
+    }
+
     if (!nextOpen) {
+      clearUploadPolling();
       clearSelectedFile();
       setFeedback(null);
       setErrorMessage(null);
@@ -226,6 +251,64 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
 
   function showError(error: unknown): void {
     setErrorMessage(getErrorMessage(error));
+  }
+
+  async function pollUploadProgress(batchId: string): Promise<UploadProgressData> {
+    return new Promise((resolve, reject) => {
+      let requestInFlight = false;
+
+      const fetchProgress = async () => {
+        if (requestInFlight) {
+          return;
+        }
+
+        requestInFlight = true;
+
+        try {
+          const response = await api.get<UploadProgressApiResponse>(
+            `/admin/knowledge/upload/${batchId}/progress`,
+          );
+          const nextSummary = response.data.data;
+
+          setUploadSummary(nextSummary);
+
+          // File transfer and backend processing are different phases.
+          // Axios reports only the browser-to-server upload, so polling fills in the remaining 80%.
+          const totalProgress = Math.min(100, 20 + Math.round(nextSummary.progressPercentage * 0.8));
+
+          setUploadProgress(totalProgress);
+          setUploadProgressLabel(
+            nextSummary.status === "processing"
+              ? t("admin.processingRowsStatus", {
+                  processed: nextSummary.processedRows,
+                  total: nextSummary.totalRows,
+                })
+              : nextSummary.status === "completed"
+                ? t("admin.completedStatus")
+                : t("admin.failedStatus"),
+          );
+
+          if (nextSummary.status === "completed" || nextSummary.status === "failed") {
+            clearUploadPolling();
+            setActiveBatchId(null);
+            resolve(nextSummary);
+          }
+        } catch (error) {
+          clearUploadPolling();
+          setActiveBatchId(null);
+          reject(error);
+        } finally {
+          requestInFlight = false;
+        }
+      };
+
+      void fetchProgress();
+
+      // Polling keeps the MVP simple while the backend updates batch progress in Postgres.
+      uploadPollIntervalRef.current = window.setInterval(() => {
+        void fetchProgress();
+      }, 1500);
+    });
   }
 
   async function loadUsers(search?: string): Promise<void> {
@@ -291,6 +374,12 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
     }
   }, [open]);
 
+  useEffect(() => {
+    return () => {
+      clearUploadPolling();
+    };
+  }, []);
+
   async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
 
@@ -299,6 +388,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
     }
 
     setFeedback(null);
+    resetUploadProgressState();
     setSelectedFile(file);
     setSelectedFileName(file.name);
     setParsedRows([]);
@@ -332,54 +422,68 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
       return;
     }
 
+    clearUploadPolling();
     setIsImporting(true);
     setFeedback(null);
+    setErrorMessage(null);
+    setUploadSummary(null);
+    setActiveBatchId(null);
+    setUploadProgress(0);
+    setUploadProgressLabel(t("admin.uploadingStatus"));
 
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const response = await api.post<KnowledgeUploadApiResponse>("/admin/knowledge/upload", formData, {
+      const response = await api.post<KnowledgeUploadStartApiResponse>("/admin/knowledge/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        onUploadProgress: (progressEvent) => {
+          if (!progressEvent.total) {
+            return;
+          }
+
+          const nextUploadProgress = Math.round((progressEvent.loaded / progressEvent.total) * 20);
+          setUploadProgress(nextUploadProgress);
+          setUploadProgressLabel(t("admin.uploadingStatus"));
+        },
       });
-      const summary = response.data.data;
+      const batchId = response.data.data.batchId;
+
+      setActiveBatchId(batchId);
+      setUploadProgress((previousValue) => Math.max(previousValue, 20));
+      setUploadProgressLabel(
+        t("admin.processingRowsStatus", {
+          processed: 0,
+          total: parsedRows.length,
+        }),
+      );
+
+      const summary = await pollUploadProgress(batchId);
       const summaryLines = [
-        t("admin.processedRows", { count: summary.totalRows }),
+        t("admin.processedRows", { count: summary.processedRows }),
         t("admin.insertedRows", { count: summary.successCount }),
         t("admin.skippedRows", { count: summary.skippedCount }),
         t("admin.failedRows", { count: summary.failedCount }),
       ];
 
-      if (summary.skippedRows.length > 0) {
-        summaryLines.push(
-          t("admin.skippedRowsDetail", {
-            rows: summary.skippedRows
-              .slice(0, 3)
-              .map((row) => `${row.rowNumber} (${row.reason})`)
-              .join(", "),
-            suffix: summary.skippedRows.length > 3 ? "..." : "",
-          }),
-        );
-      }
+      if (summary.status === "completed") {
+        setFeedback(summaryLines.join(" "));
+        setSelectedFile(null);
+        setSelectedFileName("");
+        setParsedRows([]);
 
-      if (summary.failedRows.length > 0) {
-        summaryLines.push(
-          t("admin.failedRowsDetail", {
-            rows: summary.failedRows
-              .slice(0, 3)
-              .map((row) => `${row.rowNumber} (${row.reason})`)
-              .join(", "),
-            suffix: summary.failedRows.length > 3 ? "..." : "",
-          }),
-        );
-      }
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
 
-      setFeedback(summaryLines.join(" "));
-      clearSelectedFile();
-      await loadDocuments();
+        await loadDocuments();
+      } else {
+        showError(summary.errorMessage || t("admin.uploadFailedMessage"));
+      }
     } catch (error) {
+      resetUploadProgressState();
       showError(error);
     } finally {
       setIsImporting(false);
@@ -454,7 +558,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
           <div className="grid h-full min-h-0 grid-cols-1 md:grid-cols-[260px_minmax(0,1fr)]">
             <aside className="min-h-0 overflow-auto border-b bg-slate-950 text-slate-50 md:h-full md:border-b-0 md:border-r md:border-slate-800">
             <div className="border-b border-slate-800 px-5 py-5">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-300">
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-400">
                 <Shield className="h-3.5 w-3.5" />
                 {t("admin.console")}
               </div>
@@ -503,7 +607,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
 
             <div className="flex-1 min-h-0 overflow-auto px-6 py-6">
               {feedback ? (
-                <div className="mb-5 rounded-xl border bg-card/80 px-4 py-3 text-sm text-muted-foreground">
+                <div className="mb-5 rounded-xl border bg-card/80 px-4 py-3 text-sm text-muted-foreground text-red-600">
                   {feedback}
                 </div>
               ) : null}
@@ -546,6 +650,56 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
                         ) : (
                           <div className="mt-3 text-sm text-muted-foreground">{t("admin.noFile")}</div>
                         )}
+                        {uploadProgressLabel || uploadSummary ? (
+                          <div className="mt-4 rounded-2xl border bg-background/70 p-4">
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="min-w-0">
+                                <div className="text-sm font-medium">{uploadProgressLabel || t("admin.waitingStatus")}</div>
+                                <div className="mt-1 text-xs text-muted-foreground">
+                                  {activeBatchId || uploadSummary?.batchId
+                                    ? t("admin.batchIdLabel", { batchId: activeBatchId || uploadSummary?.batchId })
+                                    : t("admin.progressReady")}
+                                </div>
+                              </div>
+                              <div className="text-sm font-semibold">{uploadProgress}%</div>
+                            </div>
+                            <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-slate-200">
+                              <div
+                                className="h-full rounded-full bg-[linear-gradient(135deg,_#10b981,_#14b8a6_45%,_#2563eb)] transition-all duration-300"
+                                style={{ width: `${uploadProgress}%` }}
+                              />
+                            </div>
+
+                            {uploadSummary ? (
+                              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                <div className="rounded-xl border bg-card px-3 py-3 text-sm">
+                                  <div className="text-muted-foreground">{t("admin.totalRowsLabel")}</div>
+                                  <div className="mt-1 font-semibold">{uploadSummary.totalRows}</div>
+                                </div>
+                                <div className="rounded-xl border bg-card px-3 py-3 text-sm">
+                                  <div className="text-muted-foreground">{t("admin.processedRowsLabel")}</div>
+                                  <div className="mt-1 font-semibold">{uploadSummary.processedRows}</div>
+                                </div>
+                                <div className="rounded-xl border bg-card px-3 py-3 text-sm">
+                                  <div className="text-muted-foreground">{t("admin.successCountLabel")}</div>
+                                  <div className="mt-1 font-semibold">{uploadSummary.successCount}</div>
+                                </div>
+                                <div className="rounded-xl border bg-card px-3 py-3 text-sm">
+                                  <div className="text-muted-foreground">{t("admin.skippedCountLabel")}</div>
+                                  <div className="mt-1 font-semibold">{uploadSummary.skippedCount}</div>
+                                </div>
+                                <div className="rounded-xl border bg-card px-3 py-3 text-sm">
+                                  <div className="text-muted-foreground">{t("admin.failedCountLabel")}</div>
+                                  <div className="mt-1 font-semibold">{uploadSummary.failedCount}</div>
+                                </div>
+                                <div className="rounded-xl border bg-card px-3 py-3 text-sm">
+                                  <div className="text-muted-foreground">{t("admin.backendProgressLabel")}</div>
+                                  <div className="mt-1 font-semibold">{uploadSummary.progressPercentage}%</div>
+                                </div>
+                              </div>
+                            ) : null}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -560,7 +714,7 @@ export function AdminModal({ open, onOpenChange }: AdminModalProps) {
                           </p>
                         </div>
                         <Button onClick={handleBulkImport} disabled={parsedRows.length === 0 || isImporting || isParsingFile}>
-                          {isImporting ? t("admin.importing") : t("admin.importRows")}
+                          {isImporting ? t("admin.uploadInProgress") : t("admin.importRows")}
                         </Button>
                       </div>
 
