@@ -25,10 +25,16 @@
     "askAI": "Ask AI",
     "workspaceBadge": "AI-powered business workspace",
     "profile": "Profile",
-    "profileDemo": "Profile (demo)",
     "logout": "Log out",
     "openMenu": "Open menu",
     "languageToggle": "বাংলা"
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Review and update your account information.",
+    "createdAt": "Created: {{date}}",
+    "updatedAt": "Updated: {{date}}",
+    "saveError": "Failed to update your profile."
   },
   "auth": {
     "requiredTitle": "Authorization required",

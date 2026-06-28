@@ -59,7 +59,7 @@ export function SignupForm({ onSuccess }: SignupFormProps) {
 
   return (
     <div className="space-y-4">
-      <Button
+      {/* <Button
         type="button"
         variant="outline"
         className="w-full justify-center bg-background/30 backdrop-blur"
@@ -67,7 +67,7 @@ export function SignupForm({ onSuccess }: SignupFormProps) {
       >
         <Chrome className="h-4 w-4" />
         {t("auth.login.google")}
-      </Button>
+      </Button> */}
 
       <div className="flex items-center gap-3">
         <Separator className="flex-1" />

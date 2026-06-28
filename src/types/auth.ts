@@ -6,4 +6,6 @@ export type AuthUser = {
   mobileNumber?: string;
   address?: string;
   role?: "user" | "admin";
+  createdAt?: string;
+  updatedAt?: string;
 };

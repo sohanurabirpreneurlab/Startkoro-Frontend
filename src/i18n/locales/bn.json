@@ -25,10 +25,16 @@
     "askAI": "AI-কে জিজ্ঞাসা করুন",
     "workspaceBadge": "AI-চালিত ব্যবসায়িক ওয়ার্কস্পেস",
     "profile": "প্রোফাইল",
-    "profileDemo": "প্রোফাইল (ডেমো)",
     "logout": "লগ আউট",
     "openMenu": "মেনু খুলুন",
     "languageToggle": "English"
+  },
+  "profile": {
+    "title": "প্রোফাইল",
+    "description": "আপনার অ্যাকাউন্টের তথ্য দেখুন এবং আপডেট করুন।",
+    "createdAt": "তৈরি হয়েছে: {{date}}",
+    "updatedAt": "আপডেট হয়েছে: {{date}}",
+    "saveError": "আপনার প্রোফাইল আপডেট করা যায়নি।"
   },
   "auth": {
     "requiredTitle": "অনুমতি প্রয়োজন",

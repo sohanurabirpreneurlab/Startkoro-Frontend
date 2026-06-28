@@ -16,6 +16,7 @@ import { AuthRequiredModal } from "@/components/auth/AuthRequiredModal";
 import { AdminModal } from "@/components/admin/AdminModal";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useTranslation } from "react-i18next";
+import { ProfileModal } from "@/components/profile/ProfileModal";
 
 function navLinkClassName(isActive: boolean) {
   return [
@@ -33,6 +34,7 @@ export function Navbar() {
   const [signupOpen, setSignupOpen] = useState(false);
   const [authRequiredOpen, setAuthRequiredOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -205,9 +207,9 @@ export function Navbar() {
                       <div className="text-xs text-muted-foreground">{user.email}</div>
                     </div>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onSelect={() => console.log("Profile (demo)")}>
+                    <DropdownMenuItem onSelect={() => setProfileOpen(true)}>
                       <User className="mr-2 h-4 w-4" />
-                      {t("navbar.profileDemo")}
+                      {t("navbar.profile")}
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
@@ -366,6 +368,7 @@ export function Navbar() {
         description={t("auth.chatRequiredDescription")}
       />
       <AdminModal open={adminOpen} onOpenChange={setAdminOpen} />
+      <ProfileModal open={profileOpen} onOpenChange={setProfileOpen} />
       <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
       <SignupModal open={signupOpen} onOpenChange={setSignupOpen} />
     </header>

@@ -6,6 +6,7 @@ import { readFromStorage, writeToStorage } from "@/utils/storage";
 type AuthContextValue = {
   user: AuthUser | null;
   can: (permission: "access-admin") => boolean;
+  updateProfile: (data: { firstName: string; lastName: string; email: string; address: string }) => Promise<void>;
   login: (data: { email: string; password: string }) => Promise<void>;
   signup: (data: {
     firstName: string;
@@ -29,6 +30,8 @@ type AuthApiUser = {
   mobile_number: string;
   address: string;
   role: "user" | "admin";
+  created_at?: string;
+  updated_at?: string;
 };
 
 type AuthApiResponse = {
@@ -66,6 +69,8 @@ function mapApiUserToAuthUser(user: AuthApiUser): AuthUser {
     mobileNumber: user.mobile_number,
     address: user.address,
     role: user.role,
+    createdAt: user.created_at,
+    updatedAt: user.updated_at,
   };
 }
 
@@ -114,6 +119,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return {
       user,
       can: (permission) => canUser(user, permission),
+      updateProfile: async ({ firstName, lastName, email, address }) => {
+        const response = await api.patch<MeApiResponse>("/auth/me", {
+          name: `${firstName} ${lastName}`.trim(),
+          email: email.trim().toLowerCase(),
+          address: address.trim(),
+        });
+
+        setUser(mapApiUserToAuthUser(response.data.data));
+      },
       login: async ({ email, password }) => {
         const response = await api.post<AuthApiResponse>("/auth/login", { email, password });
         const { user: apiUser, token } = response.data.data;
